@@ -4,14 +4,14 @@ import { getMe } from "../services/accountAPI";
 import { useAuth } from "../context/AuthProvider";
 
 export default function useAccount() {
-  const { logout } = useAuth();
+  const { logout, isAuthenticated } = useAuth();
   const { data, isLoading, error, isError } = useQuery({
     queryKey: ["account"],
     queryFn: getMe,
+    enabled: isAuthenticated,
   });
 
   if (isError) {
-    console.log(error);
     if (error.response.status === 401) {
       logout();
     }
