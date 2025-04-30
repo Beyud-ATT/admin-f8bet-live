@@ -1,7 +1,7 @@
 import { Flex, Form, Input, Typography, Upload } from "antd";
 import { CompoundModal, useModal } from "../../../components/CompoundModal";
 import { LuPenLine } from "react-icons/lu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useNewsUpdate from "../../../hooks/useNewsUpdate";
 import { FaCamera } from "react-icons/fa";
 import { toast } from "react-toastify";
@@ -29,6 +29,12 @@ function UpdateForm({ record }) {
     });
   }
 
+  useEffect(() => {
+    if (id) {
+      form.setFieldsValue({ ...record });
+    }
+  }, [id, form, record]);
+
   return (
     <Form
       layout="vertical"
@@ -41,7 +47,7 @@ function UpdateForm({ record }) {
           level={3}
           className="!text-[var(--color-brand-primary)]"
         >
-          Tạo tin tức mới
+          Cập nhật tin tức
         </Typography.Title>
       </Form.Item>
       <Form.Item name="content" label="Nội dung">
