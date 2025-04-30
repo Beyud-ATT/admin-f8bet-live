@@ -8,8 +8,8 @@ const LOCK_REASON = {
 };
 
 const USER_TYPE = {
-  IDOL: { value: 1, label: "Idol" },
-  USER: { value: 2, label: "Người dùng" },
+  IDOL: { value: 2, label: "Idol" },
+  USER: { value: 1, label: "Người dùng" },
 };
 
 const WORD_TYPE = {
