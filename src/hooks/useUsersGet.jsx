@@ -10,6 +10,7 @@ export default function useUsersGet() {
 
   const page = searchParams.get("page") || 1;
   const pageSize = searchParams.get("pageSize") || 20;
+  const textSearch = searchParams.get("textSearch") || "";
 
   useEffect(() => {
     if (pathname.includes("/users")) {
@@ -22,8 +23,9 @@ export default function useUsersGet() {
   }, [pathname]);
 
   return useQuery({
-    queryKey: ["users", userType, page, pageSize],
-    queryFn: () => getUsers({ userType, pageIndex: page, pageSize }),
+    queryKey: ["users", userType, page, pageSize, textSearch],
+    queryFn: () =>
+      getUsers({ userType, pageIndex: page, pageSize, textSearch }),
     enabled: userType !== null,
   });
 }

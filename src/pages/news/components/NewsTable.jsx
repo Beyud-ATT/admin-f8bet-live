@@ -20,7 +20,7 @@ export default function NewsTable() {
         dataIndex: "image",
         key: "image",
         render: (image) => {
-          return <Image src={image} alt="image" width={300} height={150} />;
+          return <Image src={image} alt="image" />;
         },
       },
       {
@@ -52,7 +52,7 @@ export default function NewsTable() {
         dataSource={news?.data}
         loading={isLoading}
         pagination={false}
-        scroll={{ y: 700 }}
+        scroll={{ y: 500 }}
       />
       <Pagination pagination={news?.pagination} />
     </>

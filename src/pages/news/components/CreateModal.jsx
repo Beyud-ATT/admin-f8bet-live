@@ -84,7 +84,7 @@ export default function CreateModal() {
         render={(openModal) => (
           <button
             onClick={openModal}
-            className="flex cursor-pointer items-center justify-center gap-2 rounded-lg bg-green-700 px-2 py-1 text-white"
+            className="flex h-fit cursor-pointer items-center justify-center gap-2 rounded-lg bg-green-700 px-2 py-1 text-white"
           >
             <FaPlus />
             <p>Tạo</p>

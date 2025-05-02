@@ -3,9 +3,9 @@ import axoisBase from "./axiosBase";
 
 const endpoint = "/new-infos";
 
-async function getNews() {
+async function getNews(params) {
   try {
-    const response = await axoisBase.get(endpoint);
+    const response = await axoisBase.get(endpoint, { params });
     return response;
   } catch (error) {
     toast.error(error?.response?.data?.message);
