@@ -16,7 +16,9 @@ function BanChatForm({ record }) {
       {
         onSuccess: () => {
           closeModal();
-          toast.success("Cấm chat người dùng thành công!");
+          toast.success(
+            "Đã " + (chatBlocked ? "mở" : "cấm") + " chat người dùng!",
+          );
         },
       },
     );

@@ -1,4 +1,4 @@
-import { Flex, Form, Input, Typography, Upload } from "antd";
+import { Flex, Form, Image, Input, Typography, Upload } from "antd";
 import { CompoundModal, useModal } from "../../../components/CompoundModal";
 import { LuPenLine } from "react-icons/lu";
 import { useEffect, useState } from "react";

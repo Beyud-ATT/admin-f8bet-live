@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 function UpdateOnTopForm({ record }) {
   const [form] = Form.useForm();
   const { closeModal } = useModal();
-  const { title, userId } = record || {};
+  const { title, userId, onTop } = record || {};
   const { mutate: updateOnTop } = useLivestreamUpdateOnTop();
 
   function handleFinish() {
@@ -17,7 +17,7 @@ function UpdateOnTopForm({ record }) {
       {
         onSuccess: () => {
           closeModal();
-          toast.success("Đã ghim!");
+          toast.success("Đã " + (onTop ? "gỡ ghim" : "ghim") + "!");
         },
       },
     );
@@ -38,7 +38,7 @@ function UpdateOnTopForm({ record }) {
           type="submit"
           className="cursor-pointer rounded-lg bg-[var(--color-brand-primary)] px-3 py-1 text-white"
         >
-          Ghim
+          {onTop ? "Gỡ ghim" : "Ghim"}
         </button>
       </Form.Item>
     </Form>
