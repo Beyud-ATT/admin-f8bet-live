@@ -10,30 +10,32 @@ function UpdateForm({ record }) {
   const [form] = Form.useForm();
   const { id } = record || {};
   const { closeModal } = useModal();
-  const [image, setImage] = useState("");
+  const [file, setFile] = useState("");
   const { mutate: updateNews } = useNewsUpdate();
 
   function handleFinish(values) {
     const data = {
       ...values,
-      file: image,
+      file,
       newInfoId: id,
     };
     updateNews(data, {
       onSuccess: () => {
         closeModal();
         form.resetFields();
-        setImage("");
+        setFile("");
         toast.success("Cập nhật tin tức thành công!");
       },
     });
   }
 
   useEffect(() => {
-    if (id) {
-      form.setFieldsValue({ ...record });
-    }
-  }, [id, form, record]);
+    form.setFieldsValue({
+      ...record,
+      file: record?.image,
+    });
+    setFile(record?.image);
+  }, [record, form]);
 
   return (
     <Form
@@ -50,32 +52,41 @@ function UpdateForm({ record }) {
           Cập nhật tin tức
         </Typography.Title>
       </Form.Item>
+
       <Form.Item name="content" label="Nội dung">
         <Input.TextArea autoSize={{ minRows: 5, maxRows: 5 }} />
       </Form.Item>
+
       <Form.Item name="order" label="Thứ tự ưu tiên">
         <Input type="number" />
       </Form.Item>
-      <Form.Item label={"Hình ảnh"}>
-        <Upload
-          listType="picture-card"
-          maxCount={1}
-          beforeUpload={(file) => {
-            setImage(file);
-            return false;
-          }}
-          showUploadList={{ showPreviewIcon: false }}
-        >
-          <Flex
-            justify="center"
-            align="center"
-            className="gap-2 hover:text-[var(--color-brand-primary)]"
-          >
-            <FaCamera className="h-full w-full !text-lg text-[var(--color-brand-primary)]" />
-            <span className="text-lg text-white">Thêm</span>
+
+      <Flex gap={5}>
+        <Form.Item label={"Hình ảnh"}>
+          <Flex vertical gap={10}>
+            <Image src={record?.image} loading="lazy" />
+            <Upload
+              listType="picture-card"
+              maxCount={1}
+              beforeUpload={(file) => {
+                setFile(file);
+                return false;
+              }}
+              showUploadList={{ showPreviewIcon: false }}
+            >
+              <Flex
+                justify="center"
+                align="center"
+                className="gap-2 hover:text-[var(--color-brand-primary)]"
+              >
+                <FaCamera className="h-full w-full !text-lg text-[var(--color-brand-primary)]" />
+                <span className="text-lg text-white">Thêm</span>
+              </Flex>
+            </Upload>
           </Flex>
-        </Upload>
-      </Form.Item>
+        </Form.Item>
+      </Flex>
+
       <Form.Item className="flex justify-end">
         <button
           type="submit"
