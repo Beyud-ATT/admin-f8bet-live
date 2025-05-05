@@ -16,7 +16,7 @@ function UpdateDefaultForm({ record }) {
       {
         onSuccess: () => {
           closeModal();
-          toast.success("Đã đặt mặc định!");
+          toast.success("Cập nhật thành công!");
         },
       },
     );
@@ -37,7 +37,7 @@ function UpdateDefaultForm({ record }) {
           type="submit"
           className="cursor-pointer rounded-lg bg-[var(--color-brand-primary)] px-3 py-1 text-white"
         >
-          Đặt
+          Lưu
         </button>
       </Form.Item>
     </Form>
