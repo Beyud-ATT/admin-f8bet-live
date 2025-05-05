@@ -27,6 +27,11 @@ export default function IdolTable() {
         key: "email",
       },
       {
+        title: "SĐT",
+        dataIndex: "phone",
+        key: "phone",
+      },
+      {
         title: "Người Theo Dõi",
         dataIndex: "followers",
         key: "followers",
